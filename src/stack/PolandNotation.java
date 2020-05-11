@@ -13,11 +13,7 @@ public class PolandNotation {
 		System.out.println(infixExpreesionList);
 		List<String> suffixExpressionList = parseSuffixExpressionList(infixExpreesionList);
 		System.out.println(suffixExpressionList);
-		
-		
-		
-		
-		
+				
 		
 //		String suffixExpression = "4 5 * 8 - 60 + 8 2 / +";
 //		List<String> list = getListString(suffixExpression);
