@@ -1,4 +1,4 @@
-package com.atguigu.kmp;
+package algorithm.kmp;
 
 import java.util.Arrays;
 
@@ -14,26 +14,26 @@ public class KMPAlgorithm {
 		System.out.println("next=" + Arrays.toString(next));
 		
 		int index = kmpSearch(str1, str2, next);
-		System.out.println("index=" + index); // 15ÁË
+		System.out.println("index=" + index); // 15ï¿½ï¿½
 		
 		
 	}
 	
-	//Ð´³öÎÒÃÇµÄkmpËÑË÷Ëã·¨
+	//Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½kmpï¿½ï¿½ï¿½ï¿½ï¿½ã·¨
 	/**
 	 * 
-	 * @param str1 Ô´×Ö·û´®
-	 * @param str2 ×Ó´®
-	 * @param next ²¿·ÖÆ¥Åä±í, ÊÇ×Ó´®¶ÔÓ¦µÄ²¿·ÖÆ¥Åä±í
-	 * @return Èç¹ûÊÇ-1¾ÍÊÇÃ»ÓÐÆ¥Åäµ½£¬·ñÔò·µ»ØµÚÒ»¸öÆ¥ÅäµÄÎ»ÖÃ
+	 * @param str1 Ô´ï¿½Ö·ï¿½ï¿½ï¿½
+	 * @param str2 ï¿½Ó´ï¿½
+	 * @param next ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½Ó¦ï¿½Ä²ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½-1ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Æ¥ï¿½äµ½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»Øµï¿½Ò»ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 	 */
 	public static int kmpSearch(String str1, String str2, int[] next) {
 		
-		//±éÀú 
+		//ï¿½ï¿½ï¿½ï¿½ 
 		for(int i = 0, j = 0; i < str1.length(); i++) {
 			
-			//ÐèÒª´¦Àí str1.charAt(i) £¡= str2.charAt(j), È¥µ÷ÕûjµÄ´óÐ¡
-			//KMPËã·¨ºËÐÄµã, ¿ÉÒÔÑéÖ¤...
+			//ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ str1.charAt(i) ï¿½ï¿½= str2.charAt(j), È¥ï¿½ï¿½ï¿½ï¿½jï¿½Ä´ï¿½Ð¡
+			//KMPï¿½ã·¨ï¿½ï¿½ï¿½Äµï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤...
 			while( j > 0 && str1.charAt(i) != str2.charAt(j)) {
 				j = next[j-1]; 
 			}
@@ -41,27 +41,27 @@ public class KMPAlgorithm {
 			if(str1.charAt(i) == str2.charAt(j)) {
 				j++;
 			}			
-			if(j == str2.length()) {//ÕÒµ½ÁË // j = 3 i 
+			if(j == str2.length()) {//ï¿½Òµï¿½ï¿½ï¿½ // j = 3 i 
 				return i - j + 1;
 			}
 		}
 		return  -1;
 	}
 
-	//»ñÈ¡µ½Ò»¸ö×Ö·û´®(×Ó´®) µÄ²¿·ÖÆ¥ÅäÖµ±í
+	//ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½(ï¿½Ó´ï¿½) ï¿½Ä²ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½Öµï¿½ï¿½
 	public static  int[] kmpNext(String dest) {
-		//´´½¨Ò»¸önext Êý×é±£´æ²¿·ÖÆ¥ÅäÖµ
+		//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½next ï¿½ï¿½ï¿½é±£ï¿½æ²¿ï¿½ï¿½Æ¥ï¿½ï¿½Öµ
 		int[] next = new int[dest.length()];
-		next[0] = 0; //Èç¹û×Ö·û´®ÊÇ³¤¶ÈÎª1 ²¿·ÖÆ¥ÅäÖµ¾ÍÊÇ0
+		next[0] = 0; //ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½Îª1 ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½0
 		for(int i = 1, j = 0; i < dest.length(); i++) {
-			//µ±dest.charAt(i) != dest.charAt(j) £¬ÎÒÃÇÐèÒª´Ónext[j-1]»ñÈ¡ÐÂµÄj
-			//Ö±µ½ÎÒÃÇ·¢ÏÖ ÓÐ  dest.charAt(i) == dest.charAt(j)³ÉÁ¢²ÅÍË³ö
-			//ÕâÊ±kmpËã·¨µÄºËÐÄµã
+			//ï¿½ï¿½dest.charAt(i) != dest.charAt(j) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½next[j-1]ï¿½ï¿½È¡ï¿½Âµï¿½j
+			//Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ ï¿½ï¿½  dest.charAt(i) == dest.charAt(j)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½
+			//ï¿½ï¿½Ê±kmpï¿½ã·¨ï¿½Äºï¿½ï¿½Äµï¿½
 			while(j > 0 && dest.charAt(i) != dest.charAt(j)) {
 				j = next[j-1];
 			}
 			
-			//µ±dest.charAt(i) == dest.charAt(j) Âú×ãÊ±£¬²¿·ÖÆ¥ÅäÖµ¾ÍÊÇ+1
+			//ï¿½ï¿½dest.charAt(i) == dest.charAt(j) ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½+1
 			if(dest.charAt(i) == dest.charAt(j)) {
 				j++;
 			}

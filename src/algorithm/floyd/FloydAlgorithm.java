@@ -1,13 +1,13 @@
-package com.atguigu.floyd;
+package algorithm.floyd;
 
 import java.util.Arrays;
 
 public class FloydAlgorithm {
 
 	public static void main(String[] args) {
-		// ²âÊÔ¿´¿´Í¼ÊÇ·ñ´´½¨³É¹¦
+		// ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½Í¼ï¿½Ç·ñ´´½ï¿½ï¿½É¹ï¿½
 		char[] vertex = { 'A', 'B', 'C', 'D', 'E', 'F', 'G' };
-		//´´½¨ÁÚ½Ó¾ØÕó
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ú½Ó¾ï¿½ï¿½ï¿½
 		int[][] matrix = new int[vertex.length][vertex.length];
 		final int N = 65535;
 		matrix[0] = new int[] { 0, 5, 7, N, N, N, 2 };
@@ -18,55 +18,55 @@ public class FloydAlgorithm {
 		matrix[5] = new int[] { N, N, N, 4, 5, 0, 6 };
 		matrix[6] = new int[] { 2, 3, N, N, 4, 6, 0 };
 		
-		//´´½¨ Graph ¶ÔÏó
+		//ï¿½ï¿½ï¿½ï¿½ Graph ï¿½ï¿½ï¿½ï¿½
 		Graph graph = new Graph(vertex.length, matrix, vertex);
-		//µ÷ÓÃ¸¥ÂåÒÁµÂËã·¨
+		//ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã·¨
 		graph.floyd();
 		graph.show();
 	}
 
 }
 
-// ´´½¨Í¼
+// ï¿½ï¿½ï¿½ï¿½Í¼
 class Graph {
-	private char[] vertex; // ´æ·Å¶¥µãµÄÊý×é
-	private int[][] dis; // ±£´æ£¬´Ó¸÷¸ö¶¥µã³ö·¢µ½ÆäËü¶¥µãµÄ¾àÀë£¬×îºóµÄ½á¹û£¬Ò²ÊÇ±£ÁôÔÚ¸ÃÊý×é
-	private int[][] pre;// ±£´æµ½´ïÄ¿±ê¶¥µãµÄÇ°Çý¶¥µã
+	private char[] vertex; // ï¿½ï¿½Å¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int[][] dis; // ï¿½ï¿½ï¿½æ£¬ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½Ç±ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int[][] pre;// ï¿½ï¿½ï¿½æµ½ï¿½ï¿½Ä¿ï¿½ê¶¥ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	// ¹¹ÔìÆ÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/**
 	 * 
 	 * @param length
-	 *            ´óÐ¡
+	 *            ï¿½ï¿½Ð¡
 	 * @param matrix
-	 *            ÁÚ½Ó¾ØÕó
+	 *            ï¿½Ú½Ó¾ï¿½ï¿½ï¿½
 	 * @param vertex
-	 *            ¶¥µãÊý×é
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public Graph(int length, int[][] matrix, char[] vertex) {
 		this.vertex = vertex;
 		this.dis = matrix;
 		this.pre = new int[length][length];
-		// ¶ÔpreÊý×é³õÊ¼»¯, ×¢Òâ´æ·ÅµÄÊÇÇ°Çý¶¥µãµÄÏÂ±ê
+		// ï¿½ï¿½preï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½, ×¢ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½
 		for (int i = 0; i < length; i++) {
 			Arrays.fill(pre[i], i);
 		}
 	}
 
-	// ÏÔÊ¾preÊý×éºÍdisÊý×é
+	// ï¿½ï¿½Ê¾preï¿½ï¿½ï¿½ï¿½ï¿½disï¿½ï¿½ï¿½ï¿½
 	public void show() {
 
-		//ÎªÁËÏÔÊ¾±ãÓÚÔÄ¶Á£¬ÎÒÃÇÓÅ»¯Ò»ÏÂÊä³ö
+		//Îªï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å»ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½
 		char[] vertex = { 'A', 'B', 'C', 'D', 'E', 'F', 'G' };
 		for (int k = 0; k < dis.length; k++) {
-			// ÏÈ½«preÊý×éÊä³öµÄÒ»ÐÐ
+			// ï¿½È½ï¿½preï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 			for (int i = 0; i < dis.length; i++) {
 				System.out.print(vertex[pre[k][i]] + " ");
 			}
 			System.out.println();
-			// Êä³ödisÊý×éµÄÒ»ÐÐÊý¾Ý
+			// ï¿½ï¿½ï¿½disï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for (int i = 0; i < dis.length; i++) {
-				System.out.print("("+vertex[k]+"µ½"+vertex[i]+"µÄ×î¶ÌÂ·¾¶ÊÇ" + dis[k][i] + ") ");
+				System.out.print("("+vertex[k]+"ï¿½ï¿½"+vertex[i]+"ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½" + dis[k][i] + ") ");
 			}
 			System.out.println();
 			System.out.println();
@@ -75,19 +75,19 @@ class Graph {
 
 	}
 	
-	//¸¥ÂåÒÁµÂËã·¨, ±È½ÏÈÝÒ×Àí½â£¬¶øÇÒÈÝÒ×ÊµÏÖ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã·¨, ï¿½È½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	public void floyd() {
-		int len = 0; //±äÁ¿±£´æ¾àÀë
-		//¶ÔÖÐ¼ä¶¥µã±éÀú£¬ k ¾ÍÊÇÖÐ¼ä¶¥µãµÄÏÂ±ê [A, B, C, D, E, F, G] 
+		int len = 0; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ï¿½ï¿½ï¿½Ð¼ä¶¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ k ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ä¶¥ï¿½ï¿½ï¿½ï¿½Â±ï¿½ [A, B, C, D, E, F, G] 
 		for(int k = 0; k < dis.length; k++) { // 
-			//´Ói¶¥µã¿ªÊ¼³ö·¢ [A, B, C, D, E, F, G]
+			//ï¿½ï¿½iï¿½ï¿½ï¿½ã¿ªÊ¼ï¿½ï¿½ï¿½ï¿½ [A, B, C, D, E, F, G]
 			for(int i = 0; i < dis.length; i++) {
-				//µ½´ïj¶¥µã // [A, B, C, D, E, F, G]
+				//ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ // [A, B, C, D, E, F, G]
 				for(int j = 0; j < dis.length; j++) {
-					len = dis[i][k] + dis[k][j];// => Çó³ö´Ói ¶¥µã³ö·¢£¬¾­¹ý kÖÐ¼ä¶¥µã£¬µ½´ï j ¶¥µã¾àÀë
-					if(len < dis[i][j]) {//Èç¹ûlenÐ¡ÓÚ dis[i][j]
-						dis[i][j] = len;//¸üÐÂ¾àÀë
-						pre[i][j] = pre[k][j];//¸üÐÂÇ°Çý¶¥µã
+					len = dis[i][k] + dis[k][j];// => ï¿½ï¿½ï¿½ï¿½ï¿½i ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ kï¿½Ð¼ä¶¥ï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ j ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					if(len < dis[i][j]) {//ï¿½ï¿½ï¿½lenÐ¡ï¿½ï¿½ dis[i][j]
+						dis[i][j] = len;//ï¿½ï¿½ï¿½Â¾ï¿½ï¿½ï¿½
+						pre[i][j] = pre[k][j];//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					}
 				}
 			}

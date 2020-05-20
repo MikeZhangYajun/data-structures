@@ -1,4 +1,4 @@
-package com.atguigu.greedy;
+package algorithm.greedy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,91 +7,91 @@ import java.util.HashSet;
 public class GreedyAlgorithm {
 
 	public static void main(String[] args) {
-		//´´½¨¹ã²¥µçÌ¨,·ÅÈëµ½Map
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ã²¥ï¿½ï¿½Ì¨,ï¿½ï¿½ï¿½ëµ½Map
 		HashMap<String,HashSet<String>> broadcasts = new HashMap<String, HashSet<String>>();
-		//½«¸÷¸öµçÌ¨·ÅÈëµ½broadcasts
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ëµ½broadcasts
 		HashSet<String> hashSet1 = new HashSet<String>();
-		hashSet1.add("±±¾©");
-		hashSet1.add("ÉÏº£");
-		hashSet1.add("Ìì½ò");
+		hashSet1.add("ï¿½ï¿½ï¿½ï¿½");
+		hashSet1.add("ï¿½Ïºï¿½");
+		hashSet1.add("ï¿½ï¿½ï¿½");
 		
 		HashSet<String> hashSet2 = new HashSet<String>();
-		hashSet2.add("¹ãÖÝ");
-		hashSet2.add("±±¾©");
-		hashSet2.add("ÉîÛÚ");
+		hashSet2.add("ï¿½ï¿½ï¿½ï¿½");
+		hashSet2.add("ï¿½ï¿½ï¿½ï¿½");
+		hashSet2.add("ï¿½ï¿½ï¿½ï¿½");
 		
 		HashSet<String> hashSet3 = new HashSet<String>();
-		hashSet3.add("³É¶¼");
-		hashSet3.add("ÉÏº£");
-		hashSet3.add("º¼ÖÝ");
+		hashSet3.add("ï¿½É¶ï¿½");
+		hashSet3.add("ï¿½Ïºï¿½");
+		hashSet3.add("ï¿½ï¿½ï¿½ï¿½");
 		
 		
 		HashSet<String> hashSet4 = new HashSet<String>();
-		hashSet4.add("ÉÏº£");
-		hashSet4.add("Ìì½ò");
+		hashSet4.add("ï¿½Ïºï¿½");
+		hashSet4.add("ï¿½ï¿½ï¿½");
 		
 		HashSet<String> hashSet5 = new HashSet<String>();
-		hashSet5.add("º¼ÖÝ");
-		hashSet5.add("´óÁ¬");
+		hashSet5.add("ï¿½ï¿½ï¿½ï¿½");
+		hashSet5.add("ï¿½ï¿½ï¿½ï¿½");
 	
-		//¼ÓÈëµ½map
+		//ï¿½ï¿½ï¿½ëµ½map
 		broadcasts.put("K1", hashSet1);
 		broadcasts.put("K2", hashSet2);
 		broadcasts.put("K3", hashSet3);
 		broadcasts.put("K4", hashSet4);
 		broadcasts.put("K5", hashSet5);
 		
-		//allAreas ´æ·ÅËùÓÐµÄµØÇø
+		//allAreas ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄµï¿½ï¿½ï¿½
 		HashSet<String> allAreas = new HashSet<String>();
-		allAreas.add("±±¾©");
-		allAreas.add("ÉÏº£");
-		allAreas.add("Ìì½ò");
-		allAreas.add("¹ãÖÝ");
-		allAreas.add("ÉîÛÚ");
-		allAreas.add("³É¶¼");
-		allAreas.add("º¼ÖÝ");
-		allAreas.add("´óÁ¬");
+		allAreas.add("ï¿½ï¿½ï¿½ï¿½");
+		allAreas.add("ï¿½Ïºï¿½");
+		allAreas.add("ï¿½ï¿½ï¿½");
+		allAreas.add("ï¿½ï¿½ï¿½ï¿½");
+		allAreas.add("ï¿½ï¿½ï¿½ï¿½");
+		allAreas.add("ï¿½É¶ï¿½");
+		allAreas.add("ï¿½ï¿½ï¿½ï¿½");
+		allAreas.add("ï¿½ï¿½ï¿½ï¿½");
 		
-		//´´½¨ArrayList, ´æ·ÅÑ¡ÔñµÄµçÌ¨¼¯ºÏ
+		//ï¿½ï¿½ï¿½ï¿½ArrayList, ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Äµï¿½Ì¨ï¿½ï¿½ï¿½ï¿½
 		ArrayList<String> selects = new ArrayList<String>();
 		
-		//¶¨ÒåÒ»¸öÁÙÊ±µÄ¼¯ºÏ£¬ ÔÚ±éÀúµÄ¹ý³ÌÖÐ£¬´æ·Å±éÀú¹ý³ÌÖÐµÄµçÌ¨¸²¸ÇµÄµØÇøºÍµ±Ç°»¹Ã»ÓÐ¸²¸ÇµÄµØÇøµÄ½»¼¯
+		//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ä¼ï¿½ï¿½Ï£ï¿½ ï¿½Ú±ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄµï¿½Ì¨ï¿½ï¿½ï¿½ÇµÄµï¿½ï¿½ï¿½ï¿½Íµï¿½Ç°ï¿½ï¿½Ã»ï¿½Ð¸ï¿½ï¿½ÇµÄµï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½
 		HashSet<String> tempSet = new HashSet<String>();
 		
-		//¶¨Òå¸ømaxKey £¬ ±£´æÔÚÒ»´Î±éÀú¹ý³ÌÖÐ£¬ÄÜ¹»¸²¸Ç×î´óÎ´¸²¸ÇµÄµØÇø¶ÔÓ¦µÄµçÌ¨µÄkey
-		//Èç¹ûmaxKey ²»Îªnull , Ôò»á¼ÓÈëµ½ selects
+		//ï¿½ï¿½ï¿½ï¿½ï¿½maxKey ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ÇµÄµï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Äµï¿½Ì¨ï¿½ï¿½key
+		//ï¿½ï¿½ï¿½maxKey ï¿½ï¿½Îªnull , ï¿½ï¿½ï¿½ï¿½ï¿½ëµ½ selects
 		String maxKey = null;
-		while(allAreas.size() != 0) { // Èç¹ûallAreas ²»Îª0, Ôò±íÊ¾»¹Ã»ÓÐ¸²¸Çµ½ËùÓÐµÄµØÇø
-			//Ã¿½øÐÐÒ»´Îwhile,ÐèÒª
+		while(allAreas.size() != 0) { // ï¿½ï¿½ï¿½allAreas ï¿½ï¿½Îª0, ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ã»ï¿½Ð¸ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ÐµÄµï¿½ï¿½ï¿½
+			//Ã¿ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½while,ï¿½ï¿½Òª
 			maxKey = null;
 			
-			//±éÀú broadcasts, È¡³ö¶ÔÓ¦key
+			//ï¿½ï¿½ï¿½ï¿½ broadcasts, È¡ï¿½ï¿½ï¿½ï¿½Ó¦key
 			for(String key : broadcasts.keySet()) {
-				//Ã¿½øÐÐÒ»´Îfor
+				//Ã¿ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½for
 				tempSet.clear();
-				//µ±Ç°Õâ¸ökeyÄÜ¹»¸²¸ÇµÄµØÇø
+				//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½keyï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ÇµÄµï¿½ï¿½ï¿½
 				HashSet<String> areas = broadcasts.get(key);
 				tempSet.addAll(areas);
-				//Çó³ötempSet ºÍ   allAreas ¼¯ºÏµÄ½»¼¯, ½»¼¯»á¸³¸ø tempSet
+				//ï¿½ï¿½ï¿½tempSet ï¿½ï¿½   allAreas ï¿½ï¿½ï¿½ÏµÄ½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½á¸³ï¿½ï¿½ tempSet
 				tempSet.retainAll(allAreas);
-				//Èç¹ûµ±Ç°Õâ¸ö¼¯ºÏ°üº¬µÄÎ´¸²¸ÇµØÇøµÄÊýÁ¿£¬±ÈmaxKeyÖ¸ÏòµÄ¼¯ºÏµØÇø»¹¶à
-				//¾ÍÐèÒªÖØÖÃmaxKey
-				// tempSet.size() >broadcasts.get(maxKey).size()) ÌåÏÖ³öÌ°ÐÄËã·¨µÄÌØµã,Ã¿´Î¶¼Ñ¡Ôñ×îÓÅµÄ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½maxKeyÖ¸ï¿½ï¿½Ä¼ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				//ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½maxKey
+				// tempSet.size() >broadcasts.get(maxKey).size()) ï¿½ï¿½ï¿½Ö³ï¿½Ì°ï¿½ï¿½ï¿½ã·¨ï¿½ï¿½ï¿½Øµï¿½,Ã¿ï¿½Î¶ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½
 				if(tempSet.size() > 0 && 
 						(maxKey == null || tempSet.size() >broadcasts.get(maxKey).size())){
 					maxKey = key;
 				}
 			}
-			//maxKey != null, ¾ÍÓ¦¸Ã½«maxKey ¼ÓÈëselects
+			//maxKey != null, ï¿½ï¿½Ó¦ï¿½Ã½ï¿½maxKey ï¿½ï¿½ï¿½ï¿½selects
 			if(maxKey != null) {
 				selects.add(maxKey);
-				//½«maxKeyÖ¸ÏòµÄ¹ã²¥µçÌ¨¸²¸ÇµÄµØÇø£¬´Ó allAreas È¥µô
+				//ï¿½ï¿½maxKeyÖ¸ï¿½ï¿½Ä¹ã²¥ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ÇµÄµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ allAreas È¥ï¿½ï¿½
 				allAreas.removeAll(broadcasts.get(maxKey));
 			}
 			
 		}
 		
-		System.out.println("µÃµ½µÄÑ¡Ôñ½á¹ûÊÇ" + selects);//[K1,K2,K3,K5]
+		System.out.println("ï¿½Ãµï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + selects);//[K1,K2,K3,K5]
 		
 		
 		
